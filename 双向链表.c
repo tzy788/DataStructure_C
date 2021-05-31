@@ -1,7 +1,7 @@
 /*
  * doublelink.c
  *
- *  Created on: 2021Äê5ÔÂ25ÈÕ
+ *  Created on: 2021å¹´5æœˆ25æ—¥
  *      Author: HP
  */
 #include<stdio.h>
@@ -18,7 +18,7 @@ typedef struct Doublelink{
 }doublelink;
 
 doublelink *initialdoubleLink(){
-	int position=2;//´ÓµÚ¶ş¸ö¿ªÊ¼´´½¨
+	int position=2;//ä»ç¬¬äºŒä¸ªå¼€å§‹åˆ›å»º
 	if(number<1)
 		return NULL;
 	doublelink *p=(doublelink *)malloc(sizeof(doublelink));
@@ -57,7 +57,7 @@ void DisplayDoubleLink(doublelink *p){
 
 doublelink *InsertElemInDoubleLink(doublelink *p,int elem,int position){
 	if(position<1 || position>linklength+1){
-		printf("²åÈë%dÎ»ÖÃ´íÎó\n",position);
+		printf("æ’å…¥%dä½ç½®é”™è¯¯\n",position);
 		return p;
 	}
 	doublelink *temp=(doublelink *)malloc(sizeof(doublelink));
@@ -65,29 +65,29 @@ doublelink *InsertElemInDoubleLink(doublelink *p,int elem,int position){
 	temp->pre=NULL;
 	temp->next=NULL;
 	doublelink *temp1=p;
-	//²åÈë±íÍ·
+	//æ’å…¥è¡¨å¤´
 	if(position==1){
 		temp->next=temp1;
 		temp1->pre=temp;
-		p=temp;//Í·½áµãµØÖ·×ª¸øp
+		p=temp;//å¤´ç»“ç‚¹åœ°å€è½¬ç»™p
 		linklength++;
 		return p;
 	}
 
-	for(int i=1;i<position-1;i++){//µ½´ï²åÈëÎ»ÖÃÇ°Ò»¸ö½Úµã¡£ÎªÊ²Ã´²»¶¨Î»µ½²åÈëµÄÎ»ÖÃ£¿ÒòÎª²åÈë²»ÁËÔÚÁ´±í½áÎ²
+	for(int i=1;i<position-1;i++){//åˆ°è¾¾æ’å…¥ä½ç½®å‰ä¸€ä¸ªèŠ‚ç‚¹ã€‚ä¸ºä»€ä¹ˆä¸å®šä½åˆ°æ’å…¥çš„ä½ç½®ï¼Ÿå› ä¸ºæ’å…¥ä¸äº†åœ¨é“¾è¡¨ç»“å°¾
 		temp1=temp1->next;
 	}
-	//²åÈë±íÎ²
+	//æ’å…¥è¡¨å°¾
 	if(temp1->next==NULL){
 		temp1->next=temp;
 		temp->pre=temp1;
 		linklength++;
 		return p;
 	}
-	temp->pre=temp1;//ĞÂ½ÚµãµÄpreÖ¸ÏòÇ°Ò»¸ö½Úµã
-	temp->next=temp1->next;//ĞÂ½ÚµãµÄnextÖ¸Ïòµ±Ç°Î»ÖÃ
+	temp->pre=temp1;//æ–°èŠ‚ç‚¹çš„preæŒ‡å‘å‰ä¸€ä¸ªèŠ‚ç‚¹
+	temp->next=temp1->next;//æ–°èŠ‚ç‚¹çš„nextæŒ‡å‘å½“å‰ä½ç½®
 	temp1->next->pre=temp;
-	temp1->next=temp;//²åÈëÎ»ÖÃÇ°Ò»¸ö½ÚµãµÄnextÖ¸ÏòĞÂ½Úµã
+	temp1->next=temp;//æ’å…¥ä½ç½®å‰ä¸€ä¸ªèŠ‚ç‚¹çš„nextæŒ‡å‘æ–°èŠ‚ç‚¹
 
 	linklength++;
 	return p;
@@ -95,32 +95,32 @@ doublelink *InsertElemInDoubleLink(doublelink *p,int elem,int position){
 
 doublelink *DeleteElemFromDoublelink(doublelink *p,int position){
 	if(position<1 || position>linklength+1){
-		printf("Î»ÖÃ%d²»´æÔÚ\n",position);
+		printf("ä½ç½®%dä¸å­˜åœ¨\n",position);
 		return p;
 	}
 	doublelink *temp=p;
-	if(position==1){//É¾³ı±íÍ·
+	if(position==1){//åˆ é™¤è¡¨å¤´
 		p=temp->next;
 		temp->next->pre=NULL;
 		linklength--;
 		free(temp);
 		return p;
 	}
-	for(int i=1;i<position-1;i++){//¶¨Î»µ½É¾³ıÎ»ÖÃÇ°Ò»¸ö½Úµã
+	for(int i=1;i<position-1;i++){//å®šä½åˆ°åˆ é™¤ä½ç½®å‰ä¸€ä¸ªèŠ‚ç‚¹
 		temp=temp->next;
 	}
-	//É¾³ı±íÎ²
+	//åˆ é™¤è¡¨å°¾
 	if(temp->next->next==NULL){
 		temp->next=NULL;
 		free(temp->next);
 		linklength--;
 		return p;
 	}
-	//É¾³ı³ı±íÍ·±íÎ²ÒÔÍâµÄÎ»ÖÃ
+	//åˆ é™¤é™¤è¡¨å¤´è¡¨å°¾ä»¥å¤–çš„ä½ç½®
 	//printf("%d\n",temp->next->elem);
-	doublelink *temp1=temp->next;//Ôİ´æÉ¾³ı½Úµã
-	temp->next=(temp->next)->next;//É¾³ıÎ»ÖÃÇ°Ò»¸ö½ÚµãµÄnext½Óµ½É¾³ıÎ»ÖÃºóÒ»¸ö½Úµã
-	((temp->next)->next)->pre=temp;//É¾³ıÎ»ÖÃºóÒ»¸ö½ÚµãµÄpre½Óµ½É¾³ıÎ»ÖÃÇ°Ò»¸ö½Úµã
+	doublelink *temp1=temp->next;//æš‚å­˜åˆ é™¤èŠ‚ç‚¹
+	temp->next=(temp->next)->next;//åˆ é™¤ä½ç½®å‰ä¸€ä¸ªèŠ‚ç‚¹çš„nextæ¥åˆ°åˆ é™¤ä½ç½®åä¸€ä¸ªèŠ‚ç‚¹
+	((temp->next)->next)->pre=temp;//åˆ é™¤ä½ç½®åä¸€ä¸ªèŠ‚ç‚¹çš„preæ¥åˆ°åˆ é™¤ä½ç½®å‰ä¸€ä¸ªèŠ‚ç‚¹
 
 	linklength--;
 	free(temp1);
