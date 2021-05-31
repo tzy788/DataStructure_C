@@ -1,7 +1,7 @@
 /*
  * Sqstack.c
  *
- *  Created on: 2021Äê5ÔÂ31ÈÕ
+ *  Created on: 2021å¹´5æœˆ31æ—¥
  *      Author: HP
  */
 #include<stdio.h>
@@ -9,10 +9,10 @@
 
 #define maxsize 12
 
-//topÓ¦Ğ¡ÓÚmaxsize;µ±Õ»Îª¿Õ£¬top=-1
+//topåº”å°äºmaxsize;å½“æ ˆä¸ºç©ºï¼Œtop=-1
 typedef struct SQstack{
 	int data[maxsize];
-	int top;		//Õ»¶¥Ö¸Õë
+	int top;		//æ ˆé¡¶æŒ‡é’ˆ
 }sqstack;
 
 int initialSQstack(sqstack *p){
@@ -22,9 +22,9 @@ int initialSQstack(sqstack *p){
 
 
 int SQstackPush(sqstack *p, int num){
-	//ÅĞ¶ÏÕ»ÂúÃ»Âú
+	//åˆ¤æ–­æ ˆæ»¡æ²¡æ»¡
 	if(p->top==maxsize-1){
-		printf("Õ»Âú\n");
+		printf("æ ˆæ»¡\n");
 		return 0;
 	}
 	p->top++;
@@ -33,9 +33,9 @@ int SQstackPush(sqstack *p, int num){
 }
 
 int SQstackPop(sqstack *p){
-	//ÅĞ¶ÏÕ»ÊÇ·ñÎª¿Õ
+	//åˆ¤æ–­æ ˆæ˜¯å¦ä¸ºç©º
 	if(p->top==-1){
-		printf("Õ»¿Õ\n");
+		printf("æ ˆç©º\n");
 		return 0;
 	}
 	p->top--;
