@@ -1,7 +1,7 @@
 /*
  * singlecirclelink.c
  *
- *  Created on: 2021Äê5ÔÂ25ÈÕ
+ *  Created on: 2021å¹´5æœˆ25æ—¥
  *      Author: HP
  */
 
@@ -51,29 +51,29 @@ singlecirlink *InsertCirLinkElem(singlecirlink *p,int elem,int inpos){
 	singlecirlink *temp1=p;
 
 	if(inpos<1 || inpos>length+1){
-		printf("²åÈëÎ»ÖÃ´íÎó\n");
+		printf("æ’å…¥ä½ç½®é”™è¯¯\n");
 		return p;
 	}
 	singlecirlink *temp=(singlecirlink *)malloc(sizeof(singlecirlink));
 	temp->elem=elem;
-	//²åÈë±íÍ·
+	//æ’å…¥è¡¨å¤´
 	if(inpos==1){
 		temp->next=temp1->next;
 		temp1->next=temp;
 		length++;
 		return p;
 	}
-	for(int i=1;i<inpos;i++){//²åÈëÎ»ÖÃµÄÇ°Ò»¸ö½Úµã
+	for(int i=1;i<inpos;i++){//æ’å…¥ä½ç½®çš„å‰ä¸€ä¸ªèŠ‚ç‚¹
 		temp1=temp1->next;
 	}
-	//²åÈë±íÎ²
+	//æ’å…¥è¡¨å°¾
 	if(temp1->next->elem==-456){
 		temp->next=p;
 		temp1->next=temp;
 		length++;
 		return p;
 	}
-	//²åÈë³ı±íÍ·ºÍ±íÎ²µÄÎ»ÖÃ
+	//æ’å…¥é™¤è¡¨å¤´å’Œè¡¨å°¾çš„ä½ç½®
 	temp->next=temp1->next;
 	temp1->next=temp;
 	length++;
@@ -82,7 +82,7 @@ singlecirlink *InsertCirLinkElem(singlecirlink *p,int elem,int inpos){
 
 singlecirlink *DeleteCirLinkElem(singlecirlink *p,int outpos){
 	if(outpos<1 || outpos>length){
-		printf("É¾³ıÎ»ÖÃ²»´æÔÚ¡£\n");
+		printf("åˆ é™¤ä½ç½®ä¸å­˜åœ¨ã€‚\n");
 		return p;
 	}
 	singlecirlink *temp=p;
