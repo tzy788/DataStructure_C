@@ -1,13 +1,13 @@
 /*
  * circliequeue.c
  *
- *  Created on: 2021Äê5ÔÂ26ÈÕ
+ *  Created on: 2021å¹´5æœˆ26æ—¥
  *      Author: HP
  */
 #include<stdio.h>
 #include<stdlib.h>
 
-//ÀûÓÃÊı×éµÄ»°£¬Êı×éÄÚÄÜÓÃµÄ¿Õ¼äÊÇmaxsize-1£¬ÆäÖĞÒ»¸öÓ¦¸ÃÊÇ±»ÓÃÀ´´æµØÖ·¡£
+//åˆ©ç”¨æ•°ç»„çš„è¯ï¼Œæ•°ç»„å†…èƒ½ç”¨çš„ç©ºé—´æ˜¯maxsize-1ï¼Œå…¶ä¸­ä¸€ä¸ªåº”è¯¥æ˜¯è¢«ç”¨æ¥å­˜åœ°å€ã€‚
 #define maxsize 8
 
 typedef struct CirQueue{
@@ -16,11 +16,11 @@ typedef struct CirQueue{
 	int front;
 }cirqueue;
 
-//³õÊ¼»¯Ñ­»·ÁĞ±í
+//åˆå§‹åŒ–å¾ªç¯åˆ—è¡¨
 cirqueue *InitialCirQueue(){
 	cirqueue *p=(cirqueue *)malloc(sizeof(cirqueue));
 	if(p==NULL){
-		printf("Ñ­»·¶ÓÁĞ·ÖÅäÄÚ´æÊ§°Ü\n");
+		printf("å¾ªç¯é˜Ÿåˆ—åˆ†é…å†…å­˜å¤±è´¥\n");
 		exit(0);
 	}
 	p->front=0;
@@ -28,32 +28,32 @@ cirqueue *InitialCirQueue(){
 	return p;
 }
 
-//Èë¶Ó²Ù×÷
+//å…¥é˜Ÿæ“ä½œ
 cirqueue *Push_Cirqueue(cirqueue *p,int num){
 	if(((p->rear+1)%maxsize)==p->front){
-		printf("¶ÓÁĞÒÑÂú,Èë¶ÓÊ§°Ü\n");
+		printf("é˜Ÿåˆ—å·²æ»¡,å…¥é˜Ÿå¤±è´¥\n");
 		return p;
 	}
 	p->data[(p->rear+1)%maxsize]=num;
-	printf("%dÈë¶Ó³É¹¦\n",num);
+	printf("%då…¥é˜ŸæˆåŠŸ\n",num);
 	p->rear=(p->rear+1)%maxsize;
 	return p;
 }
 
-//³ö¶Ó²Ù×÷
+//å‡ºé˜Ÿæ“ä½œ
 cirqueue *Pop_Cirqueue(cirqueue *p){
 	if(p->front==p->rear){
-		printf("¶ÓÁĞÎª¿Õ\n");
+		printf("é˜Ÿåˆ—ä¸ºç©º\n");
 		return p;
 	}
 	//int temp=p->data[p->front];
-	p->data[p->front]=0;//frontÖ¸ÏòµÄÔªËØÇåÁã
-	//printf("%d³ö¶Ó³É¹¦\n",temp);
-	p->front=(p->front+1)%maxsize;//frontÖ¸ÏòÏÂÒ»Î»
+	p->data[p->front]=0;//frontæŒ‡å‘çš„å…ƒç´ æ¸…é›¶
+	//printf("%då‡ºé˜ŸæˆåŠŸ\n",temp);
+	p->front=(p->front+1)%maxsize;//frontæŒ‡å‘ä¸‹ä¸€ä½
 	return p;
 }
 
-//±éÀúÑ­»·¶ÓÁĞ
+//éå†å¾ªç¯é˜Ÿåˆ—
 void DisplayCirQueue(cirqueue *p){
 	int temp=p->front;
 	while(temp!=p->rear){
