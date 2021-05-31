@@ -1,7 +1,7 @@
 /*
  * shunxuqueue.c
  *
- *  Created on: 2021Äê5ÔÂ26ÈÕ
+ *  Created on: 2021å¹´5æœˆ26æ—¥
  *      Author: HP
  */
 #include<stdio.h>
@@ -14,41 +14,41 @@ typedef struct Node{
 	struct Node *next;
 }node;
 
-//Ë³Ğò¶ÓÁĞ
+//é¡ºåºé˜Ÿåˆ—
 typedef struct shunxuQueue{
-	node *front;//Í·Ö¸Õë
-	node *rear;//Î²Ö¸Õë
+	node *front;//å¤´æŒ‡é’ˆ
+	node *rear;//å°¾æŒ‡é’ˆ
 }sxqueue;
 
-//³õÊ¼»¯½Úµã
+//åˆå§‹åŒ–èŠ‚ç‚¹
 node *InitialNode(){
 	node *n=(node *)malloc(sizeof(node));
 	if(n==NULL){
-		printf("½ÚµãÄÚ´æ·ÖÅäÊ§°Ü\n");
+		printf("èŠ‚ç‚¹å†…å­˜åˆ†é…å¤±è´¥\n");
 		exit(0);
 	}
 	return n;
 }
 
-//³õÊ¼»¯¶ÓÁĞ
+//åˆå§‹åŒ–é˜Ÿåˆ—
 sxqueue *InitialSXQueue(){
 	sxqueue *q=(sxqueue *)malloc(sizeof(sxqueue));
 	if(q==NULL){
-		printf("¶ÓÁĞÄÚ´æ·ÖÅäÊ§°Ü\n");
+		printf("é˜Ÿåˆ—å†…å­˜åˆ†é…å¤±è´¥\n");
 		exit (0);
 	}
-	////Í·Î²½áµã¾ù¸³ÖµNULL
+	////å¤´å°¾ç»“ç‚¹å‡èµ‹å€¼NULL
 	q->front=NULL;
 	q->rear=NULL;
 	return q;
 }
 
-//ÅĞ¶Ï¶ÓÁĞÊÇ·ñÎª¿Õ£ºÅĞ¶Ï¶ÓÁĞÍ·Ö¸ÕëÊÇ·ñÊÇ¿ÕÖµ
+//åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©ºï¼šåˆ¤æ–­é˜Ÿåˆ—å¤´æŒ‡é’ˆæ˜¯å¦æ˜¯ç©ºå€¼
 int IsQueueEmpty(sxqueue *p){
 	return p->front==NULL;
 }
 
-//Èë¶Ó²Ù×÷
+//å…¥é˜Ÿæ“ä½œ
 sxqueue *Push_SXqueue(sxqueue *p,int num){
 	node *n=InitialNode();
 	n->data=num;
@@ -56,51 +56,51 @@ sxqueue *Push_SXqueue(sxqueue *p,int num){
 	if(IsQueueEmpty(p)){
 		p->front=n;
 		p->rear=n;
-		printf("¶ÓÁĞÎª¿Õ£¬µÚ%d¸ö½Úµã%dÈë¶Ó\n",length_queue++,num);
+		printf("é˜Ÿåˆ—ä¸ºç©ºï¼Œç¬¬%dä¸ªèŠ‚ç‚¹%då…¥é˜Ÿ\n",length_queue++,num);
 		return p;
 	}
 	else{
 		p->rear->next=n;
 		p->rear=n;
-		printf("µÚ%d¸ö½Úµã%dÈë¶Ó\n",length_queue++,num);
+		printf("ç¬¬%dä¸ªèŠ‚ç‚¹%då…¥é˜Ÿ\n",length_queue++,num);
 		return p;
 	}
 }
 
-//³ö¶Ó
+//å‡ºé˜Ÿ
 sxqueue *Pop_SXqueue(sxqueue *p){
-	//ÅĞ¶Ï¶ÓÁĞÊÇ·ñÎª¿Õ
+	//åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
 	if(IsQueueEmpty(p)){
-		printf("¶ÓÁĞÎª¿Õ\n");
+		printf("é˜Ÿåˆ—ä¸ºç©º\n");
 		return p;
 	}
-	//ÅĞ¶Ï¶ÓÁĞÊÇ·ñÖ»ÓĞÒ»¸öÔªËØ
+	//åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦åªæœ‰ä¸€ä¸ªå…ƒç´ 
 	if(p->front==p->rear){
 		node *temp=p->rear;
 		int last_data=temp->data;
 		p->front=NULL;
 		p->rear=NULL;
 		free(temp);
-		printf("×îºóÒ»¸öÔªËØ%dÒÑ³ö¶Ó£¬¶ÓÁĞ¿ÕÁË\n",last_data);
+		printf("æœ€åä¸€ä¸ªå…ƒç´ %då·²å‡ºé˜Ÿï¼Œé˜Ÿåˆ—ç©ºäº†\n",last_data);
 		return p;
 	}
-	//³ıÒÔÉÏÁ½ÖÖÇé¿öµÄ³ö¶Ó²Ù×÷
+	//é™¤ä»¥ä¸Šä¸¤ç§æƒ…å†µçš„å‡ºé˜Ÿæ“ä½œ
 	node *temp;
 	temp=p->front;
 	p->front=temp->next;
-	printf("%d³ö¶Ó\n",temp->data);
+	printf("%då‡ºé˜Ÿ\n",temp->data);
 	free(temp);
 	return p;
 }
 
-//´òÓ¡¶ÓÁĞ
+//æ‰“å°é˜Ÿåˆ—
 void Display_SXQueue(sxqueue *p){
 	if(IsQueueEmpty(p)){
-		printf("¶ÓÁĞÎª¿Õ\n");
+		printf("é˜Ÿåˆ—ä¸ºç©º\n");
 	}
 	node *temp;
 	temp=p->front;
-	printf("¶ÓÁĞÔªËØÓĞ£º ");
+	printf("é˜Ÿåˆ—å…ƒç´ æœ‰ï¼š ");
 	while(temp){
 		printf("%d ",temp->data);
 		temp=temp->next;
