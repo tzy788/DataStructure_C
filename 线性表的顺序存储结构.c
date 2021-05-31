@@ -1,7 +1,7 @@
 /*
  * shunxuchunchushixian1.c
  *
- *  Created on: 2021Äê5ÔÂ19ÈÕ
+ *  Created on: 2021å¹´5æœˆ19æ—¥
  *      Author: HP
  */
 #include<stdio.h>
@@ -19,7 +19,7 @@ table InitialTable(){
 	table t;
 	t.head=(int *)malloc(SIZE*sizeof(int));
 	if(!t.head){
-		printf("ÉêÇëÄÚ´æÊ§°Ü¡£\n");
+		printf("ç”³è¯·å†…å­˜å¤±è´¥ã€‚\n");
 		exit(0);
 	}
 	t.length=0;
@@ -36,23 +36,23 @@ void DisplayTable(table t){
 	printf("\n");
 }
 
-table addTable(table t,int x,int add){//xÎª²åÈëµÄÔªËØ£¬addÎª²åÈëµÄÎ»ÖÃ
-	//ÅĞ¶Ï²åÈëÎ»ÖÃµÄºÏ·¨ĞÔ
+table addTable(table t,int x,int add){//xä¸ºæ’å…¥çš„å…ƒç´ ï¼Œaddä¸ºæ’å…¥çš„ä½ç½®
+	//åˆ¤æ–­æ’å…¥ä½ç½®çš„åˆæ³•æ€§
 	if(add>t.length+1||add<1){
-		printf("²åÈëµÄÎ»ÖÃ²»ºÏ·¨¡£\n");
+		printf("æ’å…¥çš„ä½ç½®ä¸åˆæ³•ã€‚\n");
 		return t;
 	}
-	//ÅĞ¶Ï±íÂúÁËÃ»
+	//åˆ¤æ–­è¡¨æ»¡äº†æ²¡
 	if(t.length==t.size){
-		printf("±íÒÑÂú,ÕıÔÚÎªÄúÖØĞÂ·ÖÅä¿Õ¼ä¡£\n");
+		printf("è¡¨å·²æ»¡,æ­£åœ¨ä¸ºæ‚¨é‡æ–°åˆ†é…ç©ºé—´ã€‚\n");
 		t.head=(int *)realloc(t.head,(t.size+1)*sizeof(int));
 		if(!t.head){
-			printf("·ÖÅä¿Õ¼äÊ§°Ü£¡\n");
+			printf("åˆ†é…ç©ºé—´å¤±è´¥ï¼\n");
 			return t;
 		}
 		t.size+=1;
 	}
-	//¿ªÊ¼²åÈë£¬½«×îºóÒ»¸öÍùºóÅ²Ò»¸ö£¬È»ºóÒÀ´ÎÍùºóÒÆ¡£
+	//å¼€å§‹æ’å…¥ï¼Œå°†æœ€åä¸€ä¸ªå¾€åæŒªä¸€ä¸ªï¼Œç„¶åä¾æ¬¡å¾€åç§»ã€‚
 	for(int i=t.length-1;i>=add-1;i--){
 		t.head[i+1]=t.head[i];
 
@@ -62,9 +62,9 @@ table addTable(table t,int x,int add){//xÎª²åÈëµÄÔªËØ£¬addÎª²åÈëµÄÎ»ÖÃ
 	return t;
 }
 
-table deleteTable(table t, int delete){//deleteÎªÏëÒªÉ¾³ıµÄÔªËØµÄÎ»ÖÃ
+table deleteTable(table t, int delete){//deleteä¸ºæƒ³è¦åˆ é™¤çš„å…ƒç´ çš„ä½ç½®
 	if(delete>t.length || delete<1){
-		printf("É¾³ıµÄÎ»ÖÃÓĞÎó\n");
+		printf("åˆ é™¤çš„ä½ç½®æœ‰è¯¯\n");
 		return t;
 	}
 
@@ -75,10 +75,10 @@ table deleteTable(table t, int delete){//deleteÎªÏëÒªÉ¾³ıµÄÔªËØµÄÎ»ÖÃ
 	return t;
 }
 
-table changeTable(table t, int x,int newx ){//ÓÃnewxÌæ´úx
+table changeTable(table t, int x,int newx ){//ç”¨newxæ›¿ä»£x
 	int temp=find(t,x);
 	if(temp==-1){
-		printf("Î´ÕÒµ½¸ÃÔªËØ\n");
+		printf("æœªæ‰¾åˆ°è¯¥å…ƒç´ \n");
 	}
 	else{
 		t.head[temp-1]=newx;
@@ -86,7 +86,7 @@ table changeTable(table t, int x,int newx ){//ÓÃnewxÌæ´úx
 	return t;
 }
 
-int find(table t, int x){//²éÕÒx
+int find(table t, int x){//æŸ¥æ‰¾x
 	for(int i=0;i<t.length;i++){
 		if(t.head[i]==x){
 			return i+1;
