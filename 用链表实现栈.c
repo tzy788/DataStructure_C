@@ -1,20 +1,20 @@
 /*
  * linkstack.c
  *
- *  Created on: 2021Äê5ÔÂ26ÈÕ
+ *  Created on: 2021å¹´5æœˆ26æ—¥
  *      Author: HP
  */
 #include<stdio.h>
 #include<stdlib.h>
-//Õ»µÄ½áµãÉè¼Æ
-//µ¥¸ö½áµãÉè¼Æ£¬Êý¾ÝºÍÏÂÒ»¸öÖ¸Õë
+//æ ˆçš„ç»“ç‚¹è®¾è®¡
+//å•ä¸ªç»“ç‚¹è®¾è®¡ï¼Œæ•°æ®å’Œä¸‹ä¸€ä¸ªæŒ‡é’ˆ
 typedef struct Node{
 	int data;
 	struct Node *next;
 }node;
 
 
-//ÀûÓÃÉÏÃæµÄ½áµã´´½¨Õ»£¬·ÖÎªÖ¸ÏòÍ·½áµãµÄtopÖ¸ÕëºÍ¼ÆÊýÓÃµÄcount
+//åˆ©ç”¨ä¸Šé¢çš„ç»“ç‚¹åˆ›å»ºæ ˆï¼Œåˆ†ä¸ºæŒ‡å‘å¤´ç»“ç‚¹çš„topæŒ‡é’ˆå’Œè®¡æ•°ç”¨çš„count
 typedef struct LinkStack{
 	node *top;
 	int count;
@@ -23,7 +23,7 @@ typedef struct LinkStack{
 linkstack *InitialLinkStack(){
 	linkstack *p= (linkstack *)malloc(sizeof(linkstack));
 	if(p==NULL){
-		printf("ÎÞ·¨¸øÕ»·ÖÅäÄÚ´æ\n");
+		printf("æ— æ³•ç»™æ ˆåˆ†é…å†…å­˜\n");
 		exit(0);
 	}
 	p->top=NULL;
@@ -31,38 +31,38 @@ linkstack *InitialLinkStack(){
 	return p;
 }
 
-//±¾ÖÊÉÏ¾ÍÊÇ¸öµ¥Á´±í
+//æœ¬è´¨ä¸Šå°±æ˜¯ä¸ªå•é“¾è¡¨
 linkstack *Push(linkstack *p,int data){
-	node *temp=(node *)malloc(sizeof(node));//ÐÂ½Úµã
+	node *temp=(node *)malloc(sizeof(node));//æ–°èŠ‚ç‚¹
 	if(temp==NULL){
-		printf("ÎÞ·¨¸øÐÂ½Úµã·ÖÅäÄÚ´æ\n");
+		printf("æ— æ³•ç»™æ–°èŠ‚ç‚¹åˆ†é…å†…å­˜\n");
 		exit(0);
 	}
 	temp->data=data;
-	temp->next=p->top;//ÐÂ½ÚµãµÄnextÖ¸ÏòÇ°Ò»¸ö½Úµã
-	p->top=temp;//Õ»¶¥topÖ¸ÏòÐÂ½Úµã
+	temp->next=p->top;//æ–°èŠ‚ç‚¹çš„nextæŒ‡å‘å‰ä¸€ä¸ªèŠ‚ç‚¹
+	p->top=temp;//æ ˆé¡¶topæŒ‡å‘æ–°èŠ‚ç‚¹
 	p->count++;
-	printf("%dÈëÕ»,Õ»ÀïÓÐ%d¸öÔªËØ\n",data,p->count);
+	printf("%då…¥æ ˆ,æ ˆé‡Œæœ‰%dä¸ªå…ƒç´ \n",data,p->count);
 	return p;
 }
 
 linkstack *Pop(linkstack *p){
 	if(p->top==NULL){
-		printf("Õ»Îª¿Õ\n");
+		printf("æ ˆä¸ºç©º\n");
 		return p;
 	}
-	printf("Õ»¶¥ÔªËØÎª%d,³öÕ»£¬",p->top->data);
+	printf("æ ˆé¡¶å…ƒç´ ä¸º%d,å‡ºæ ˆï¼Œ",p->top->data);
 	node *temp=p->top;
 	p->top=p->top->next;
 	free(temp);
 	p->count--;
-	printf("ÏÖÔÚµÄÕ»¶¥ÔªËØÎª%d\n",p->top->data);
+	printf("çŽ°åœ¨çš„æ ˆé¡¶å…ƒç´ ä¸º%d\n",p->top->data);
 	return p;
 }
 
 void DisplayLinkStack(linkstack *p){
 	if(p->top==NULL){
-		printf("Õ»Îª¿Õ\n");
+		printf("æ ˆä¸ºç©º\n");
 	}
 	node *temp=p->top;
 	while(temp!=NULL){
