@@ -1,51 +1,51 @@
 /*
  * binaryTree.c
  *
- *  Created on: 2021Äê5ÔÂ27ÈÕ
+ *  Created on: 2021å¹´5æœˆ27æ—¥
  *      Author: HP
  */
 #include<stdio.h>
 #include<stdlib.h>
 
-//½Úµã
+//èŠ‚ç‚¹
 typedef struct Node{
 	int data;
 	struct Node *left;
 	struct Node *right;
 }node;
 
-//¸ù½Úµã
+//æ ¹èŠ‚ç‚¹
 typedef struct Tree{
 	 node *root;
 }tree;
 
-//³õÊ¼»¯Ò»¿Ã¿ÕÊ÷
+//åˆå§‹åŒ–ä¸€æ£µç©ºæ ‘
 tree *InitialBanaryTree(){
 	tree *p=(tree *)malloc(sizeof(tree));
 	p->root=NULL;
 	return p;
 }
 
-//²åÈëÐÂ½Úµã£¬µÚÒ»¸öÊý¸³¸ø¸ù½Úµã£¬Ð¡µÄ·Å×ó±ß£¬´óµÄ·ÅÓÒ±ß
+//æ’å…¥æ–°èŠ‚ç‚¹ï¼Œç¬¬ä¸€ä¸ªæ•°èµ‹ç»™æ ¹èŠ‚ç‚¹ï¼Œå°çš„æ”¾å·¦è¾¹ï¼Œå¤§çš„æ”¾å³è¾¹
 void InsertNodeToTree(tree *p,int num){
 	node *newnode=(node *)malloc(sizeof(node));
 	newnode->data=num;
 	newnode->left=NULL;
 	newnode->right=NULL;
-	//ÅÐ¶ÏÊ÷¸ùÊÇ·ñÎª¿Õ
-	if(p->root==NULL){//Ê÷¸ùÎª¿Õ
+	//åˆ¤æ–­æ ‘æ ¹æ˜¯å¦ä¸ºç©º
+	if(p->root==NULL){//æ ‘æ ¹ä¸ºç©º
 		p->root=newnode;
 	}
-	else{//Ê÷¸ù²»Îª¿Õ
+	else{//æ ‘æ ¹ä¸ä¸ºç©º
 		node *temp=p->root;
 		while(temp!=NULL){
-			if(num<temp->data){//ÐÂ²åÈëµÄÊý±Èµ±Ç°½ÚµãÐ¡£¬·Å×ó±ß
-				if(temp->left==NULL){//µ±Ç°½Úµã×ó×Ó½ÚµãÎª¿Õ
+			if(num<temp->data){//æ–°æ’å…¥çš„æ•°æ¯”å½“å‰èŠ‚ç‚¹å°ï¼Œæ”¾å·¦è¾¹
+				if(temp->left==NULL){//å½“å‰èŠ‚ç‚¹å·¦å­èŠ‚ç‚¹ä¸ºç©º
 					temp->left=newnode;
 					return;
 				}
 				else{
-					temp=temp->left;//¼ÌÐøÍùÏÂ
+					temp=temp->left;//ç»§ç»­å¾€ä¸‹
 				}
 
 			}
@@ -65,7 +65,7 @@ void InsertNodeToTree(tree *p,int num){
 
 }
 
-//ÏÈÐò±éÀú:¸ù×óÓÒ
+//å…ˆåºéåŽ†:æ ¹å·¦å³
 void PreorderTraverse(node *p){
 	if(p!=NULL){
 		printf("%d ",p->data);
@@ -78,7 +78,7 @@ void PreorderTraverse(node *p){
 
 }
 
-//ÖÐÐò±éÀú:×ó¸ùÓÒ
+//ä¸­åºéåŽ†:å·¦æ ¹å³
 void InorderTraverse(node *p){
 	if(p!=NULL){
 		InorderTraverse(p->left);
@@ -88,7 +88,7 @@ void InorderTraverse(node *p){
 	return;
 }
 
-//ºóÐò±éÀú×óÓÒ¸ù
+//åŽåºéåŽ†å·¦å³æ ¹
 void PostorderTraverse(node* p){
 	if(p!=NULL){
 		PostorderTraverse(p->left);
