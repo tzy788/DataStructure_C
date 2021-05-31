@@ -1,102 +1,102 @@
 /*
  * StaticLinkList.c
  *
- *  Created on: 2021Äê5ÔÂ29ÈÕ
+ *  Created on: 2021å¹´5æœˆ29æ—¥
  *      Author: HP
  */
 
 #include<stdio.h>
 #include<stdlib.h>
 
-#define maxsize 12  //Ò»°ã±È½Ï´ó£¬·½±ãÊ¹ÓÃµÄÊ±ºò²»Í£µÄ²åÈëÊı¾İ£¬ÄÜ´æÈëµÄÊı¾İ¸öÊıÎªmaxsize-2
+#define maxsize 12  //ä¸€èˆ¬æ¯”è¾ƒå¤§ï¼Œæ–¹ä¾¿ä½¿ç”¨çš„æ—¶å€™ä¸åœçš„æ’å…¥æ•°æ®ï¼Œèƒ½å­˜å…¥çš„æ•°æ®ä¸ªæ•°ä¸ºmaxsize-2
 
-//Êı×éµÚÒ»¸öºÍ×îºóÒ»¸ö×öÌØÊâÔªËØ£¬²»´æÊı¾İdata
-//¶¨ÒåÎ´±»Ê¹ÓÃµÄÊı×éÔªËØÎª±¸ÓÃÁ´±í
-//Êı×éµÚÒ»¸öÔªËØµÄcur´æ·Å±¸ÓÃÁ´±íµÄµÚÒ»¸ö½áµãµÄÏÂ±ê
-//Êı×é×îºóÒ»¸öÔªËØµÄcur´æ·ÅµÚÒ»¸öÓĞÊıÖµÔªËØµÄÏÂ±ê£¬Ïàµ±ÓÚÍ·½áµã
+//æ•°ç»„ç¬¬ä¸€ä¸ªå’Œæœ€åä¸€ä¸ªåšç‰¹æ®Šå…ƒç´ ï¼Œä¸å­˜æ•°æ®data
+//å®šä¹‰æœªè¢«ä½¿ç”¨çš„æ•°ç»„å…ƒç´ ä¸ºå¤‡ç”¨é“¾è¡¨
+//æ•°ç»„ç¬¬ä¸€ä¸ªå…ƒç´ çš„curå­˜æ”¾å¤‡ç”¨é“¾è¡¨çš„ç¬¬ä¸€ä¸ªç»“ç‚¹çš„ä¸‹æ ‡
+//æ•°ç»„æœ€åä¸€ä¸ªå…ƒç´ çš„curå­˜æ”¾ç¬¬ä¸€ä¸ªæœ‰æ•°å€¼å…ƒç´ çš„ä¸‹æ ‡ï¼Œç›¸å½“äºå¤´ç»“ç‚¹
 typedef struct StaticLinkList{
 	int data;
-	int cur;//ÓÎ±ê
+	int cur;//æ¸¸æ ‡
 }staticlinklist[maxsize];
 
 
 
-//³õÊ¼»¯Á´±í
+//åˆå§‹åŒ–é“¾è¡¨
 int InitialStatLinkList(staticlinklist p){
 
-	p[maxsize-1].cur=0; //¿ÕÁ´±í£¬×îºóÒ»¸öcurÖ¸Ïò0
-	p[0].cur=1;//µÚÒ»¸öcurÖ¸Ïò1£¬ĞÂ²åÈëµÄÊı¾İ»á·Åµ½p[1]ÖĞ
-	for(int i=0;i<maxsize-1;i++){//p[1]µ½p[maxsize-2]µÄdataºÍcur¶¼ÖÃÎª¿Õ
+	p[maxsize-1].cur=0; //ç©ºé“¾è¡¨ï¼Œæœ€åä¸€ä¸ªcuræŒ‡å‘0
+	p[0].cur=1;//ç¬¬ä¸€ä¸ªcuræŒ‡å‘1ï¼Œæ–°æ’å…¥çš„æ•°æ®ä¼šæ”¾åˆ°p[1]ä¸­
+	for(int i=0;i<maxsize-1;i++){//p[1]åˆ°p[maxsize-2]çš„dataå’Œcuréƒ½ç½®ä¸ºç©º
 		p[i].cur=i+1;
 
 	}
 	return 1;
 }
 
-//¼ÆËã±íµÄ³¤¶È
+//è®¡ç®—è¡¨çš„é•¿åº¦
 int LengthofStaticLinkList(staticlinklist p){
 	if(p[maxsize-1].cur==0){
-		printf("¿Õ±í\n");
+		printf("ç©ºè¡¨\n");
 		return 0;
 	}
 	int length=0;
 	int i;
-	i=p[maxsize-1].cur;//µÚÒ»¸öÓĞÊı¾İµÄÏÂ±ê
+	i=p[maxsize-1].cur;//ç¬¬ä¸€ä¸ªæœ‰æ•°æ®çš„ä¸‹æ ‡
 	while(i){
-		i=p[i].cur;//×îºóÒ»¸öÓĞÊı¾İµÄ½áµãµÄcurµÈÓÚ0
+		i=p[i].cur;//æœ€åä¸€ä¸ªæœ‰æ•°æ®çš„ç»“ç‚¹çš„curç­‰äº0
 		length++;
 	}
 
 	return length;
 }
 
-//ÔÚÊı×éÖĞ·ÖÅä¿Õ¼ä£¬Ïàµ±ÓÚmalloc,·µ»Ø±¸ÓÃÁ´±íµÄµÚÒ»¸ö¿Õ¼äµÄÏÂ±ê
+//åœ¨æ•°ç»„ä¸­åˆ†é…ç©ºé—´ï¼Œç›¸å½“äºmalloc,è¿”å›å¤‡ç”¨é“¾è¡¨çš„ç¬¬ä¸€ä¸ªç©ºé—´çš„ä¸‹æ ‡
 int StaLinkListMalloc(staticlinklist p){
 	int i=p[0].cur;
 	if(p[0].cur!=maxsize-1){
 		p[0].cur=p[i].cur;
 	}
 	else{
-		printf("¿Õ¼ä·ÖÅäÊ§°Ü\n");
+		printf("ç©ºé—´åˆ†é…å¤±è´¥\n");
 		return -1;
 	}
 	return i;
 }
 
-//½«É¾³ıµÄ½Úµã¼ÓÈë±¸ÓÃÁ´±íµÄµÚÒ»¸ö,posÎªÒªfreeµÄÎ»ÖÃ,½«posµÄÎ»ÖÃ±ä³É±¸ÓÃÁ´±íµÄÍ·½áµã
+//å°†åˆ é™¤çš„èŠ‚ç‚¹åŠ å…¥å¤‡ç”¨é“¾è¡¨çš„ç¬¬ä¸€ä¸ª,posä¸ºè¦freeçš„ä½ç½®,å°†posçš„ä½ç½®å˜æˆå¤‡ç”¨é“¾è¡¨çš„å¤´ç»“ç‚¹
 void StaLinkListFree(staticlinklist p,int pos){
 	p[pos].cur=p[0].cur;
 	p[0].cur=pos;
 
 }
 
-//²åÈëÔªËØ,numÊÇ²åÈëµÄÖµ£¬posÊÇ²åÈëµÄÎ»ÖÃ
+//æ’å…¥å…ƒç´ ,numæ˜¯æ’å…¥çš„å€¼ï¼Œposæ˜¯æ’å…¥çš„ä½ç½®
 int InsertElemInStaLinkList(staticlinklist p,int num,int pos){
-	//²åÈë±íÍ·
+	//æ’å…¥è¡¨å¤´
 	if(pos==1){
-		int k=StaLinkListMalloc(p);//ĞÂ·ÖÅäÎ»ÖÃÏÂ±ê
+		int k=StaLinkListMalloc(p);//æ–°åˆ†é…ä½ç½®ä¸‹æ ‡
 		p[k].data=num;
 		p[maxsize-1].cur=k;
 		p[k].cur=0;
 		return 1;
 
 	}
-	//ÅĞ¶Ï±íÂú
+	//åˆ¤æ–­è¡¨æ»¡
 	if(p[0].cur==maxsize-1){
-		printf("±íÂú£¬²åÈëÊ§°Ü\n");
+		printf("è¡¨æ»¡ï¼Œæ’å…¥å¤±è´¥\n");
 		return 0;
 	}
-	//ÅĞ¶Ï²åÈëÎ»ÖÃÊÇ·ñºÏ·¨
+	//åˆ¤æ–­æ’å…¥ä½ç½®æ˜¯å¦åˆæ³•
 	if(pos<1||pos>LengthofStaticLinkList(p)+1){
-		printf("²åÈëÎ»ÖÃ·Ç·¨\n");
+		printf("æ’å…¥ä½ç½®éæ³•\n");
 		return 0;
 	}
 
-	int i=StaLinkListMalloc(p);//±¸ÓÃÁ´±íµÚÒ»¸öµÄÏÂ±ê
-	if(i!=-1){//¿Õ¼ä·ÖÅä³É¹¦
+	int i=StaLinkListMalloc(p);//å¤‡ç”¨é“¾è¡¨ç¬¬ä¸€ä¸ªçš„ä¸‹æ ‡
+	if(i!=-1){//ç©ºé—´åˆ†é…æˆåŠŸ
 		p[i].data=num;
-		int temp=p[maxsize-1].cur;//µÚÒ»¸öÓĞÊı¾İµÄÏÂ±ê
-		for(int j=1;j<pos-1;j++){//ÕÒµ½²åÈëÎ»µÄÇ°Ò»¸ö½áµã
+		int temp=p[maxsize-1].cur;//ç¬¬ä¸€ä¸ªæœ‰æ•°æ®çš„ä¸‹æ ‡
+		for(int j=1;j<pos-1;j++){//æ‰¾åˆ°æ’å…¥ä½çš„å‰ä¸€ä¸ªç»“ç‚¹
 			temp=p[temp].cur;
 		}
 		p[i].cur=p[temp].cur;
@@ -108,7 +108,7 @@ int InsertElemInStaLinkList(staticlinklist p,int num,int pos){
 	}
 }
 
-//±éÀú
+//éå†
 void DisplayStatLinkList(staticlinklist p){
 	int i=p[maxsize-1].cur;
 	while(i){
@@ -118,25 +118,25 @@ void DisplayStatLinkList(staticlinklist p){
 	printf("\n");
 }
 
-//É¾³ıÔªËØ
+//åˆ é™¤å…ƒç´ 
 int DeleteElemFromStatLinkList(staticlinklist p,int pos){
-	//ÅĞ¶ÏÉ¾³ıÎ»ÖÃÊÇ·ñ·Ç·¨
+	//åˆ¤æ–­åˆ é™¤ä½ç½®æ˜¯å¦éæ³•
 	if(pos<1||pos>LengthofStaticLinkList(p)){
-		printf("²åÈëÎ»ÖÃ·Ç·¨\n");
+		printf("æ’å…¥ä½ç½®éæ³•\n");
 		return 0;
 	}
-	//É¾³ı±íÍ·
+	//åˆ é™¤è¡¨å¤´
 	if(pos==1){
 		int temp=p[maxsize-1].cur;
 		p[maxsize-1].cur=p[(p[maxsize-1].cur)].cur;
 		StaLinkListFree(p,temp);
 		return 1;
 	}
-	int temp=p[maxsize-1].cur;//µÚÒ»¸öÓĞÊı¾İµÄÏÂ±ê
-	for(int j=1;j<pos-1;j++){//ÕÒµ½É¾³ıÎ»µÄÇ°Ò»¸ö½áµã
+	int temp=p[maxsize-1].cur;//ç¬¬ä¸€ä¸ªæœ‰æ•°æ®çš„ä¸‹æ ‡
+	for(int j=1;j<pos-1;j++){//æ‰¾åˆ°åˆ é™¤ä½çš„å‰ä¸€ä¸ªç»“ç‚¹
 		temp=p[temp].cur;
 	}
-	//É¾³ı±íÆäËûÎ»ÖÃµÄÔªËØ
+	//åˆ é™¤è¡¨å…¶ä»–ä½ç½®çš„å…ƒç´ 
 	int temp1=p[temp].cur;
 	p[temp].cur=p[p[temp].cur].cur;
 	StaLinkListFree(p,temp1);
