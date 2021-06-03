@@ -15,8 +15,8 @@ tips3:这是一段碎碎念，主要是写下一些在用指针和结构体时�
 
       (1)typedef struct vexnode
         {
- 　　       int vertex;
- 　　       arcnode* firstarc;
+		int vertex;
+		arcnode* firstarc;
           }adjlist[Vnum];  
         这段代码定义了一个结构体数组变量名"adjlist"，后续写代码如果用"adjust a"意思是建立一个名为a的vexnode数组，a有Vnum个vexnode元素；  
         这要和下面这段代码区分开：  
