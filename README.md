@@ -13,7 +13,7 @@ tips2:C语言开发中，如果自定义的函数中要改变函数外某变量�
 
 tips3:这是一段碎碎念，主要是写下一些在用指针和结构体时遇到的一些比较混淆的概念用法：  
 
-      (1)typedef struct vexnode    
+      (1)typedef struct vexnode
         {
  　　       int vertex;
  　　       arcnode* firstarc;
